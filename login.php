@@ -1,14 +1,20 @@
 <?php
-// class CheckUser{
-//     public function Checking(){
-
-//     }
-// }
-
-// if($_SERVER['REQUEST_METHOD']==="POST"){
+session_start();
 
 
-// }
+
+if($_SERVER['REQUEST_METHOD']=="POST"){
+    if($_POST['role']=="admin"){
+       header("location: dashbordAdmin.php");
+    }
+    else if($_POST['role']=="journaliste"){
+       header("location: dashbordJournalist.php");
+    }else{
+    //    header("location: pageVisiteur.php");
+    exit();
+
+    }
+}
 
 
 ?>
@@ -237,7 +243,7 @@
             <p class="subtitle">Select your role to continue</p>
         </div>
 
-        <form action="Personne.php" method="POST">
+        <form  method="POST">
             <div class="form-group">
                 <label for="role">Select Your Role</label>
                 <select id="role" name="role" required>
@@ -253,27 +259,15 @@
         <div class="divider">OR</div>
 
         <button class="guest-button">
+            <a href="pageVisiteur.php">
             <span class="guest-icon">👤</span>
+
             Continue as Visiteur
+            </a>
+
         </button>
 
         <p class="footer-text">Secure access • No account required for guests</p>
     </div>
-
-    <script>
-        // function handleLogin(event) {
-        //     event.preventDefault();
-        //     const role = document.getElementById('role').value;
-        //     if (role) {
-        //         alert(`Logging in as ${role.charAt(0).toUpperCase() + role.slice(1)}...`);
-        //         // Add your login logic here
-        //     }
-        // }
-
-        // function handleGuest() {
-        //     alert('Continuing as Guest (Visiteur)...');
-        //     // Add your guest access logic here
-        // }
-    </script>
 </body>
 </html>
