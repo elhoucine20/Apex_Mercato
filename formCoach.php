@@ -303,7 +303,7 @@
 
                 <div class="btn-group">
                     <button type="reset" class="btn btn-secondary">🔄 Réinitialiser</button>
-                    <button type="submit" class="btn btn-primary">✓ Ajouter le coach</button>
+                    <button type="submit" name="submit" class="btn btn-primary">✓ Ajouter le coach</button>
                 </div>
             </form>
         </div>

@@ -318,9 +318,9 @@
 
         <ul class="menu">
             <li><a href="#" class="active">📈 <span>Dashboard</span></a></li>
-            <li><a href="">⚽ <span>Joueurs</span></a></li>
-            <li><a href="#">👔 <span>Coachs</span></a></li>
-            <li><a href="#">🏆 <span>Équipes</span></a></li>
+            <li><a href="#joueurs">⚽ <span>Joueurs</span></a></li>
+            <li><a href="#coachs">👔 <span>Coachs</span></a></li>
+            <li><a href="#equipes">🏆 <span>Équipes</span></a></li>
             <li><a href="#">📰 <span>Articles</span></a></li>
             <li><a href="#">👥 <span>Utilisateurs</span></a></li>
             <li><a href="#">⚙️ <span>Paramètres</span></a></li>
@@ -381,7 +381,7 @@
         </div>
 
         <!-- Recent Players -->
-        <div class="content-section">
+        <div id="joueurs" class="content-section">
             <div class="section-header">
                 <h2>Joueurs récents</h2>
                 <a href="formJoueur.php" class="btn">+ Ajouter joueur</a>
@@ -420,7 +420,7 @@
                             <button class="action-btn delete">🗑️ Supprimer</button>
                         </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td>#003</td>
                         <td>Hakim Ziyech</td>
                         <td>Milieu</td>
@@ -430,13 +430,13 @@
                             <button class="action-btn edit">✏️ Modifier</button>
                             <button class="action-btn delete">🗑️ Supprimer</button>
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
 
         <!-- Recent Coachs -->
-        <div class="content-section">
+        <div id="coachs" class="content-section">
             <div class="section-header">
                 <h2>Coachs récents</h2>
                 <a href="formCoach.php" class="btn">+ Ajouter coach</a>
@@ -464,7 +464,7 @@
                             <button class="action-btn delete">🗑️ Supprimer</button>
                         </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td>#C02</td>
                         <td>Hussein Amotta</td>
                         <td>Équilibré</td>
@@ -474,7 +474,63 @@
                             <button class="action-btn edit">✏️ Modifier</button>
                             <button class="action-btn delete">🗑️ Supprimer</button>
                         </td>
+                    </tr> -->
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- equipes -->
+        <div id="equipes" class="content-section">
+            <div class="section-header">
+                <h2>equipes récents</h2>
+                <a href="AddEquipe.php" class="btn">+ Ajouter equipes</a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Manager</th>
+                        <th>Budget</th>
+                        <!-- <th>Statut</th> -->
+                        <th>Actions</th>
                     </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#001</td>
+                        <td>Achraf Hakimi</td>
+                        <td>Défenseur</td>
+                        <td>10000</td>
+                        <!-- <td><span class="badge active">Actif</span></td> -->
+                        <td>
+                            <button class="action-btn edit">✏️ Modifier</button>
+                            <button class="action-btn delete">🗑️ Supprimer</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#002</td>
+                        <td>Yassine Bounou</td>
+                        <td>Gardien</td>
+                        <td>10000</td>
+                        <!-- <td><span class="badge active">Actif</span></td> -->
+                        <td>
+                            <button class="action-btn edit">✏️ Modifier</button>
+                            <button class="action-btn delete">🗑️ Supprimer</button>
+                        </td>
+                    </tr>
+                    <!-- <tr>
+                        <td>#003</td>
+                        <td>Hakim Ziyech</td>
+                        <td>Milieu</td>
+                        <td>Galatasaray</td>
+                        <td><span class="badge active">Actif</span></td>
+                        <td>
+                            <button class="action-btn edit">✏️ Modifier</button>
+                            <button class="action-btn delete">🗑️ Supprimer</button>
+                        </td>
+                    </tr> -->
                 </tbody>
             </table>
         </div>

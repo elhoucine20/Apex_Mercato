@@ -277,7 +277,7 @@
 
                 <div class="btn-group">
                     <button type="reset" class="btn btn-secondary">🔄 Réinitialiser</button>
-                    <button type="submit" class="btn btn-primary">✓ Ajouter le joueur</button>
+                    <button type="submit" name="submit"  class="btn btn-primary">✓ Ajouter le joueur</button>
                 </div>
             </form>
         </div>
