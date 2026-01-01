@@ -485,17 +485,7 @@ include "DataBase.php";
                             <button class="action-btn delete">🗑️ Supprimer</button>
                         </td>
                     </tr>
-                    <!-- <tr>
-                        <td>#C02</td>
-                        <td>Hussein Amotta</td>
-                        <td>Équilibré</td>
-                        <td>5 ans</td>
-                        <td>Raja CA</td>
-                        <td>
-                            <button class="action-btn edit">✏️ Modifier</button>
-                            <button class="action-btn delete">🗑️ Supprimer</button>
-                        </td>
-                    </tr> -->
+                
                 </tbody>
             </table>
         </div>
@@ -523,8 +513,10 @@ include "DataBase.php";
                     <tr>
                         <td><?= $equipe["id"] ?></td>
                         <td><?= $equipe["Name"] ?></td>
-                        <td><?= $equipe['Manager'] ?></td>
-                        <td><?= $equipe['Budget'] ?></td>
+                        <td><?= $equipe['Manager'] ?>
+                                                          
+                        <td><?= $equipe['Budget'] ?>
+                    <a href="EditBudget.php?id=<?= $equipe["id"] ?>">Edit</a></td></td>
                         <td>
                             <button class="action-btn edit">✏️ Modifier</button>
                             <button class="action-btn delete">🗑️ Supprimer</button>

@@ -44,16 +44,25 @@ public function Create($conn){
     ]);
 }
 
-   // public function Read(){
-      //   return $this -> Affichage("equipe",$conn);
+   //   public function EditBudget($conn,$id){
+   //     $stmt="UPDATE equipe SET Budget="
+   //  }
+
+  public function EditBudget($conn, $newBudget, $equipeId)
+{
+    $stmt = $conn->prepare(
+        "UPDATE equipe SET Budget = :budget WHERE id = :id"
+    );
+
+    return $stmt->execute([
+        ':budget' => $newBudget,
+        ':id'     => $equipeId
+    ]);
+}
+
+
     }
 
-
-   // public function Affichage($equipe,$conn);
-
-// }
-
-      //   var_dump($_POST);
 if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['submit'])){
 
     if(!empty($_POST['name'])){
@@ -77,15 +86,5 @@ if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['submit'])){
         $error = "Erreur lors du nom de l'equipe.";
     }
 }
-
-  
-       
-    // var_dump();
-
-
-
-
-
-
 
 
