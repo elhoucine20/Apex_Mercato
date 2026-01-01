@@ -1,8 +1,22 @@
 
 <?php
 include "Equipe.php";
+include "DataBase.php";
+// $NewEquipe=new Equipe(); 
 
+
+// include "Equipe.php";
+
+// $nom='';
+// $Manager='';
+// $Budget='';
+// $equipe="equipe";
+
+
+   $NewEquipe = new Equipe();
+   $equipes = $NewEquipe->Affichage("equipe",$conn);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -313,6 +327,7 @@ include "Equipe.php";
             }
         }
     </style>
+
 </head>
 <body>
     <!-- Sidebar -->
@@ -504,13 +519,12 @@ include "Equipe.php";
                     </tr>
                 </thead>
                 <tbody>
-                    <?php  foreach($data as $element){ ?>
+                    <?php  foreach($equipes as $equipe){ ?>
                     <tr>
-                        <td><?php $element['id'] ?></td>
-                        <td><?php $element['Name'] ?></td>
-                        <td><?php $element['Manager'] ?></td>
-                        <td><?php $element['Budget'] ?></td>
-                        <!-- <td><span class="badge active">Actif</span></td> -->
+                        <td><?= $equipe["id"] ?></td>
+                        <td><?= $equipe["Name"] ?></td>
+                        <td><?= $equipe['Manager'] ?></td>
+                        <td><?= $equipe['Budget'] ?></td>
                         <td>
                             <button class="action-btn edit">✏️ Modifier</button>
                             <button class="action-btn delete">🗑️ Supprimer</button>

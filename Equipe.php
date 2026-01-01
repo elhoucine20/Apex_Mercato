@@ -1,7 +1,7 @@
 
 <?php
 include "DataBase.php";
-include "AddEquipe.php";
+// include "AddEquipe.php";
 include "Trait.php";
 
 class Equipe {
@@ -32,38 +32,55 @@ class Equipe {
     }
 
 public function Create($conn){
-     $stmt = $conn->prepare("INSERT INTO equipe (Name,Manager,Budget) VALUES (:name, :Manager, :Budget)");
-     $stmt->execute(array(':name'=>$this->name,':Manager'=>$this->manager,':Budget'=>$this->budget));
+    $stmt = $conn->prepare(
+        "INSERT INTO equipe (`Name`, `Manager`, `Budget`)
+         VALUES (:name, :manager, :budget)"
+    );
 
-  }
-
-//    Affichage($equipe,$conn);
-
+    return $stmt->execute([
+        ':name'    => $this->name,
+        ':manager' => $this->manager,
+        ':budget'  => $this->budget
+    ]);
 }
-$nom='';
-$Manager='';
-$Budget='';
-$equipe="equipe";
 
-if($_SERVER['REQUEST_METHOD']=="POST"){
-   //  if(isset($_POST['submit'])){
-        $nom=$_POST['name'];
-        $Manager=$_POST['manager'];
-        $Budget=$_POST['budget'];
-    }else{
-        echo "pas de post";
+   // public function Read(){
+      //   return $this -> Affichage("equipe",$conn);
     }
-// }else{
-//     echo "pas de post";
+
+
+   // public function Affichage($equipe,$conn);
+
 // }
-           $NewEquipe = new Equipe();
-    $NewEquipe->SetName($nom);
-    $NewEquipe->SetManager($Manager);
-    $NewEquipe->SetBudget($Budget);
-    $NewEquipe->Create($conn);
-    $data=$NewEquipe->Affichage($equipe,$conn);
+
+      //   var_dump($_POST);
+if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['submit'])){
+
+    if(!empty($_POST['name'])){
+
+        $nom = htmlspecialchars(trim($_POST['name']));
+        $manager = htmlspecialchars(trim($_POST['manager']));
+        $budget = isset($_POST['budget']) ? $_POST['budget'] : 0;
+
+        $NewEquipe = new Equipe();
+        $NewEquipe->SetName($nom);
+        $NewEquipe->SetManager($manager);
+        $NewEquipe->SetBudget($budget);
+        if($NewEquipe->Create($conn)){
+            header("Location: dashbordAdmin.php?valide=1");
+            exit();
+        } else {
+            $error = "Erreur lors de l'ajout de l'equipe.";
+        }
+
+    } else {
+        $error = "Erreur lors du nom de l'equipe.";
+    }
+}
+
+  
        
-    // var_dump($NewEquipe->Affichage($equipe,$conn));
+    // var_dump();
 
 
 

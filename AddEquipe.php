@@ -147,7 +147,7 @@
             Une équipe représente un club ou une sélection nationale.
         </div>
 
-        <form action="Equipe.php" method="POST">
+        <form action="" method="POST">
 
             <div class="form-group">
                 <label>Nom de l’équipe <span class="required">*</span></label>

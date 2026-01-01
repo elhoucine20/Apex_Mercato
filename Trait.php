@@ -4,25 +4,24 @@ include "DataBase.php";
 trait Crud {
 
     public function Affichage($Name_Equipe, $conn) {
-        $sql = "SELECT * FROM $Name_Equipe";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
+        $operation =$conn->prepare ("SELECT * FROM $Name_Equipe");
+        // $stmt = $conn->prepare($sql);
+        $operation->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $operation->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }
 
-
-// trait Crud {
-
-// public function Affichage($Name_Equipe,$conn){
-//    $sql = $conn->prepare("SELECT * FROM $Name_Equipe");
-//    $result = $conn->execute($sql);
-//    return $result->fetch_all(MYSQLI_ASSOC);
-
-//    }
+// trait crud {
+//     public function read($name,$connection){
+//         $operation = $connection -> prepare("SELECT * FROM $name");
+//         $operation -> execute();
+//          return $operation -> fetchAll(PDO::FETCH_ASSOC);
+//     }
+   
 // }
+
 
 
 
