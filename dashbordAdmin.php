@@ -1,3 +1,9 @@
+
+<?php
+include "Equipe.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -498,39 +504,19 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php  foreach($data as $element){ ?>
                     <tr>
-                        <td>#001</td>
-                        <td>Achraf Hakimi</td>
-                        <td>Défenseur</td>
-                        <td>10000</td>
+                        <td><?php $element['id'] ?></td>
+                        <td><?php $element['Name'] ?></td>
+                        <td><?php $element['Manager'] ?></td>
+                        <td><?php $element['Budget'] ?></td>
                         <!-- <td><span class="badge active">Actif</span></td> -->
                         <td>
                             <button class="action-btn edit">✏️ Modifier</button>
                             <button class="action-btn delete">🗑️ Supprimer</button>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>#002</td>
-                        <td>Yassine Bounou</td>
-                        <td>Gardien</td>
-                        <td>10000</td>
-                        <!-- <td><span class="badge active">Actif</span></td> -->
-                        <td>
-                            <button class="action-btn edit">✏️ Modifier</button>
-                            <button class="action-btn delete">🗑️ Supprimer</button>
-                        </td>
-                    </tr>
-                    <!-- <tr>
-                        <td>#003</td>
-                        <td>Hakim Ziyech</td>
-                        <td>Milieu</td>
-                        <td>Galatasaray</td>
-                        <td><span class="badge active">Actif</span></td>
-                        <td>
-                            <button class="action-btn edit">✏️ Modifier</button>
-                            <button class="action-btn delete">🗑️ Supprimer</button>
-                        </td>
-                    </tr> -->
+                    </tr> 
+                    <?php  }?>
                 </tbody>
             </table>
         </div>

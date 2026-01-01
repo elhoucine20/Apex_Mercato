@@ -7,12 +7,15 @@ $password = "";
 $conn=null;
 try {
   $conn = new PDO("mysql:host=$servername;dbname=mercato;charset=utf8", $username, $password);
+  $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
 } catch(PDOException $e) {
-  echo "Connection failed: " . $e->getMessage();
+  echo "Connection failed: " . $e->getMessage(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 }
 
-///////////////
+
+// // ////////////////
+// <?php
 // class Database
 // {
 
@@ -21,10 +24,10 @@ try {
 //     private ?PDO $pdo;
 
 // //----change this to fit your database----
-//  private string $host = "db";
-//  private string $username = "apex";
-//  private string $password = "apex";
-//  private string $dbname = "apex_manager";
+//     private string $host = "db";
+//     private string $username = "apex";
+//     private string $password = "apex";
+//     private string $dbname = "apex_manager";
 // //----change this to fit your database----
 
 //     private function __construct()
@@ -46,10 +49,3 @@ try {
 //         return $this->pdo;
 //     }
 // }
-
-
-
-
-
-
-
