@@ -1,4 +1,54 @@
+<?php
+include "DataBase.php";
+include_once "Equipe.php";
 
+
+if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['submit'])){
+
+    if(!empty($_POST['name'])){
+
+        $nom = htmlspecialchars(trim($_POST['name']));
+        $manager = htmlspecialchars(trim($_POST['manager']));
+        $budget = isset($_POST['budget']) ? $_POST['budget'] : 0;
+
+        $NewEquipe = new Equipe();
+        $NewEquipe->SetName($nom);
+        $NewEquipe->SetManager($manager);
+        $NewEquipe->SetBudget($budget);
+        if($NewEquipe->Create($conn)){
+            header("Location: dashbordAdmin.php?valide=1");
+            exit();
+        } else {
+            $error = "Erreur en l'ajoute de l'equipe.";
+        }
+
+    } else {
+        $error = "Erreur en name de l'equipe.";
+    }
+}
+
+// modification de l'equipe
+// if (!isset($_GET['id'])) {
+//     header("Location: dashbordAdmin.php");
+//     exit();
+// }
+
+// $id=$_GET['id'];
+// $operation=$conn->prepare("SELECT * FROM equipe WHERE id=:id");
+// $result = $operation->execute([':id'=> $id]);
+//  if($result){
+
+// $nom=$result['Name'];
+// $manager=$result['Manager'];
+// $budget=$result['Budget'];
+
+// }else{
+//   header("location: dashbordAdmin.php");
+// }
+
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -151,17 +201,17 @@
 
             <div class="form-group">
                 <label>Nom de l’équipe <span class="required">*</span></label>
-                <input type="text" name="name" placeholder="Ex: Raja Club Athletic" required>
+                <input type="text" name="<?= $nom?>" placeholder="Ex: Raja Club Athletic" required>
             </div>
 
             <div class="form-group">
                 <label>Manager</label>
-                <input type="text" name="manager" placeholder="Ex: Aziz El Badraoui">
+                <input type="text"  name="<?= $manager?>" placeholder="Ex: Aziz El Badraoui">
             </div>
 
             <div class="form-group">
                 <label>Budget (€)</label>
-                <input type="number" name="budget" min="0" placeholder="Ex: 5000000">
+                <input type="number" name="<?= $budget?>" min="0" placeholder="Ex: 5000000">
             </div>
 
             <div class="btn-group">

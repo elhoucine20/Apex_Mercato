@@ -3,25 +3,30 @@ include "DataBase.php";
  
 trait Crud {
 
-    public function Affichage($Name_Equipe, $conn) {
-        $operation =$conn->prepare ("SELECT * FROM $Name_Equipe");
-        // $stmt = $conn->prepare($sql);
+    public function Affichage($Name, $conn) {
+        $operation =$conn->prepare ("SELECT * FROM $Name");
         $operation->execute();
 
         return $operation->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function Delete($conn,$id,$name){
+        try{
+              $stmt =$conn->prepare("DELETE FROM $name WHERE id= :id");
+             return $stmt->execute([':id' => $id]);
+        }catch(PDOException $e){
+            error_log("error ekn delete: " .$e->getMessage());
+            return false;
+        }
+   
+    }
+
+ 
+
 }
 
-// trait crud {
-//     public function read($name,$connection){
-//         $operation = $connection -> prepare("SELECT * FROM $name");
-//         $operation -> execute();
-//          return $operation -> fetchAll(PDO::FETCH_ASSOC);
-//     }
    
-// }
-
+        
 
 
 

@@ -1,8 +1,8 @@
 
 <?php
-include "DataBase.php";
+include_once "DataBase.php";
 // include "AddEquipe.php";
-include "Trait.php";
+include_once "Trait.php";
 
 class Equipe {
     use Crud;
@@ -31,7 +31,8 @@ class Equipe {
        return $this->budget;
     }
 
-public function Create($conn){
+   //  creation de l'equipe
+    public function Create($conn){
     $stmt = $conn->prepare(
         "INSERT INTO equipe (`Name`, `Manager`, `Budget`)
          VALUES (:name, :manager, :budget)"
@@ -42,49 +43,37 @@ public function Create($conn){
         ':manager' => $this->manager,
         ':budget'  => $this->budget
     ]);
-}
-
-   //   public function EditBudget($conn,$id){
-   //     $stmt="UPDATE equipe SET Budget="
-   //  }
-
-  public function EditBudget($conn, $newBudget, $equipeId)
-{
-    $stmt = $conn->prepare(
-        "UPDATE equipe SET Budget = :budget WHERE id = :id"
-    );
-
-    return $stmt->execute([
-        ':budget' => $newBudget,
-        ':id'     => $equipeId
-    ]);
-}
-
-
     }
 
-if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['submit'])){
+//  modiification du budget 
+    public function EditBudget($conn, $newBudget, $equipeId){
+         $stmt = $conn->prepare(
+             "UPDATE equipe SET Budget = :budget WHERE id = :id"
+         );
+     
+         return $stmt->execute([
+             ':budget' => $newBudget,
+             ':id'     => $equipeId
+         ]);
+     }
+ 
+   //   method de modification l'equipe
+  public function EditEquipe($conn, $newBudget,$newManager,$newName, $id){
+         $stmt = $conn->prepare(
+             "UPDATE equipe SET 
+             Name = :name,
+             Manager = :manager,
+             Budget = :budget 
+             WHERE id = :id"
+         );
+     
+         return $stmt->execute([
+             ':name' => $newName,
+             ':manager' => $newManager,
+             ':budget' => $newBudget,
+             ':id'     => $id
+         ]);
+     }
 
-    if(!empty($_POST['name'])){
-
-        $nom = htmlspecialchars(trim($_POST['name']));
-        $manager = htmlspecialchars(trim($_POST['manager']));
-        $budget = isset($_POST['budget']) ? $_POST['budget'] : 0;
-
-        $NewEquipe = new Equipe();
-        $NewEquipe->SetName($nom);
-        $NewEquipe->SetManager($manager);
-        $NewEquipe->SetBudget($budget);
-        if($NewEquipe->Create($conn)){
-            header("Location: dashbordAdmin.php?valide=1");
-            exit();
-        } else {
-            $error = "Erreur lors de l'ajout de l'equipe.";
-        }
-
-    } else {
-        $error = "Erreur lors du nom de l'equipe.";
-    }
 }
-
 

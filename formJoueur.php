@@ -1,3 +1,37 @@
+<?php
+include "DataBase.php";
+include_once "Joueur.php";
+
+
+if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['submit'])){
+
+    if(!empty($_POST['name'])){
+
+        $name = htmlspecialchars(trim($_POST['name']));
+        $role = htmlspecialchars(trim($_POST['role']));
+        $nationalite = isset($_POST['nationalite']);
+        $email = isset($_POST['email']);
+        $valeurMarcher = isset($_POST['valeur_marche']);
+        $IdEquipe = isset($_POST['equipe_id']);
+        $IdContra=isset($_POST['id_contra']);
+
+        $NewJoueur = new Joueur($name,$email,$nationalite,$IdEquipe,$role,$valeurMarcher);
+        // $NewEquipe->SetName($nom);
+        // $NewEquipe->SetManager($manager);
+        // $NewEquipe->SetBudget($budget);
+        if($NewJoueur->Create($conn)){
+            header("Location: dashbordAdmin.php?valide=1");
+            exit();
+        } else {
+            $error = "Erreur en l'ajoute de joueur.";
+        }
+
+    } else {
+        $error = "Erreur en name de joueur.";
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -197,14 +231,15 @@
 
             <form action="" method="POST">
                 <div class="form-row">
-                    <div class="form-group">
-                        <label for="id">ID <span class="required">*</span></label>
-                        <input type="number" id="id" name="id" placeholder="Ex: 1" required>
-                    </div>
+                   
 
                     <div class="form-group">
                         <label for="name">Nom complet <span class="required">*</span></label>
                         <input type="text" id="name" name="name" placeholder="Ex: Achraf Hakimi" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="id_contra">ID Contra <span class="required">*</span></label>
+                        <input type="number" id="id_contra" name="id_contra" placeholder="id_contra" required>
                     </div>
                 </div>
 
@@ -255,8 +290,8 @@
                 </div>
 
                 <div class="form-group full-width">
-                    <label for="equipe_id">Équipe <span class="required">*</span></label>
-                    <input id="equipe_id" name="equipe_id" required>
+                    <label for="equipe_id">Équipe id<span class="required">*</span></label>
+                    <input type="number" id="equipe_id" name="equipe_id" required>
                         <!-- <option value="">-- Sélectionner une équipe --</option>
                         <option value="1">Paris Saint-Germain</option>
                         <option value="2">Real Madrid</option>

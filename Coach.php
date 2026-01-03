@@ -18,6 +18,34 @@ class Coach extends Personne {
       
     }
 
+
+    
+
+  // public function EditCoach($conn, $newName,$newEmail,$New_style_coach,$newNationalite,$New_annee_experience,$newEquipeId, $id){
+  //        $stmt = $conn->prepare(
+  //            "UPDATE coach SET 
+  //            Name = :name,
+  //            Email = :email,
+  //            style_coach = :style,
+  //            Nationalité = :nationalite ,
+  //            annee_experience = :annee_experience ,
+  //            Equipe_id = :equipe_id 
+  //            WHERE id = :id"
+  //        );
+     
+  //        return $stmt->execute([
+  //            ':name' => $newName,
+  //            ':manager' => $newEmail,
+  //            ':budget' => $New_style_coach,
+  //            ':budget' => $newNationalite,
+  //            ':budget' => $New_annee_experience,
+  //            ':budget' => $newEquipeId,
+  //            ':id'     => $id
+  //        ]);
+  // }
+
+
+
 }
 
 

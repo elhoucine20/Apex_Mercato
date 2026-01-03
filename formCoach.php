@@ -1,3 +1,39 @@
+<?php
+// include "DataBase.php";
+// include_once "Joueur.php";
+
+
+// if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['submit'])){
+
+//     if(!empty($_POST['name'])){
+
+//         $name = htmlspecialchars(trim($_POST['name']));
+//         $role = htmlspecialchars(trim($_POST['role']));
+//         $nationalite = isset($_POST['nationalite']);
+//         $email = isset($_POST['email']);
+//         $valeurMarcher = isset($_POST['valeur_marche']);
+//         $IdEquipe = isset($_POST['equipe_id']);
+//         $IdContra=isset($_POST['id_contra']);
+
+//         $NewJoueur = new Joueur($name,$email,$nationalite,$IdEquipe,$role,$valeurMarcher);
+//         // $NewEquipe->SetName($nom);
+//         // $NewEquipe->SetManager($manager);
+//         // $NewEquipe->SetBudget($budget);
+//         if($NewJoueur->Create($conn)){
+//             header("Location: dashbordAdmin.php?valide=1");
+//             exit();
+//         } else {
+//             $error = "Erreur en l'ajoute de joueur.";
+//         }
+
+//     } else {
+//         $error = "Erreur en name de joueur.";
+//     }
+// }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

@@ -1,20 +1,17 @@
 
 <?php
-include "Equipe.php";
-include "DataBase.php";
-// $NewEquipe=new Equipe(); 
-
-
-// include "Equipe.php";
-
-// $nom='';
-// $Manager='';
-// $Budget='';
-// $equipe="equipe";
-
+include_once "DataBase.php";
+include_once "Equipe.php";
 
    $NewEquipe = new Equipe();
-   $equipes = $NewEquipe->Affichage("equipe",$conn);
+   $equipes = $NewEquipe->Affichage("equipe",$conn); 
+    // $equipes = $NewEquipe->Delete($conn,$id,"equipe");
+
+    $NewJoueur = new Joueur();
+   $joueurs = $NewJoueur->Affichage("joueur",$conn); 
+
+
+
 ?>
 
 
@@ -419,22 +416,12 @@ include "DataBase.php";
                     </tr>
                 </thead>
                 <tbody>
+                    <?php  foreach($joueurs as $joueur){ ?>
                     <tr>
-                        <td>#001</td>
-                        <td>Achraf Hakimi</td>
-                        <td>Défenseur</td>
-                        <td>PSG</td>
-                        <td><span class="badge active">Actif</span></td>
-                        <td>
-                            <button class="action-btn edit">✏️ Modifier</button>
-                            <button class="action-btn delete">🗑️ Supprimer</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#002</td>
-                        <td>Yassine Bounou</td>
-                        <td>Gardien</td>
-                        <td>Al-Hilal</td>
+                        <td><?= $joueur['name'] ?></td>
+                        <td><?= $joueur['email'] ?></td>
+                        <td><?= $joueur['nationalite'] ?></td>
+                        <td><?= $joueur['name'] ?></td>
                         <td><span class="badge active">Actif</span></td>
                         <td>
                             <button class="action-btn edit">✏️ Modifier</button>
@@ -452,6 +439,8 @@ include "DataBase.php";
                             <button class="action-btn delete">🗑️ Supprimer</button>
                         </td>
                     </tr> -->
+                    <?php  }?>
+
                 </tbody>
             </table>
         </div>
@@ -516,10 +505,14 @@ include "DataBase.php";
                         <td><?= $equipe['Manager'] ?>
                                                           
                         <td><?= $equipe['Budget'] ?>
-                    <a href="EditBudget.php?id=<?= $equipe["id"] ?>">Edit</a></td></td>
+                                 <a href="EditBudget.php?id=<?= $equipe["id"] ?>">Edit</a></td></td>
                         <td>
-                            <button class="action-btn edit">✏️ Modifier</button>
-                            <button class="action-btn delete">🗑️ Supprimer</button>
+                            <button class="action-btn edit">
+                                <a href="EditEquipe.php?id=<?= $equipe["id"]?>">✏️ Modifier</a>
+                            </button>
+                            <button class="action-btn delete">
+                                 <a href="deleteEquipe.php?id=<?= $equipe["id"]?>">🗑️ Supprimer</a>
+                            </button>
                         </td>
                     </tr> 
                     <?php  }?>

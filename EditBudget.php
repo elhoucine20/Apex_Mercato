@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         header("Location: dashbordAdmin.php");
         exit();
     } else {
-        $error = "Erreur lors de la modification du budget";
+        $error = "Erreur dans la modification de budget";
     }
 }
 
