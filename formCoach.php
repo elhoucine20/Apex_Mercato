@@ -1,35 +1,39 @@
 <?php
-// include "DataBase.php";
-// include_once "Joueur.php";
+include_once "DataBase.php";
+include_once "Coach.php";
 
+if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['submit'])){
 
-// if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['submit'])){
+    if(!empty($_POST['name'])){
 
-//     if(!empty($_POST['name'])){
+        $name = htmlspecialchars(trim($_POST['name']));
 
-//         $name = htmlspecialchars(trim($_POST['name']));
-//         $role = htmlspecialchars(trim($_POST['role']));
-//         $nationalite = isset($_POST['nationalite']);
-//         $email = isset($_POST['email']);
-//         $valeurMarcher = isset($_POST['valeur_marche']);
-//         $IdEquipe = isset($_POST['equipe_id']);
-//         $IdContra=isset($_POST['id_contra']);
+        $style_coach = htmlspecialchars(trim($_POST['style_coach']));
 
-//         $NewJoueur = new Joueur($name,$email,$nationalite,$IdEquipe,$role,$valeurMarcher);
-//         // $NewEquipe->SetName($nom);
-//         // $NewEquipe->SetManager($manager);
-//         // $NewEquipe->SetBudget($budget);
-//         if($NewJoueur->Create($conn)){
-//             header("Location: dashbordAdmin.php?valide=1");
-//             exit();
-//         } else {
-//             $error = "Erreur en l'ajoute de joueur.";
-//         }
+        $nationalite = htmlspecialchars(trim($_POST['nationalite']));
 
-//     } else {
-//         $error = "Erreur en name de joueur.";
-//     }
-// }
+        $email = htmlspecialchars(trim($_POST['email']));
+
+        $annee_experience = htmlspecialchars(trim($_POST['annee_experience']));
+
+        $IdEquipe = htmlspecialchars(trim($_POST['equipe_id']));
+        
+        // $IdContra=isset($_POST['id_contra']);
+
+        $NewCoach = new Coach();
+
+        $NewCoach->Create($conn,$name,$email,$nationalite,$IdEquipe,$style_coach,$annee_experience);
+            header("Location: dashbordAdmin.php");
+        //     exit();
+        // } else {
+        //     $error = "Erreur en l'ajoute de coach.";
+        // }
+
+    } else {
+        $error = "Erreur en name de coach.";
+    }
+}
+
 
 ?>
 
@@ -316,8 +320,8 @@
 
                     <div class="form-group">
                         <label for="equipe_id">Équipe <span class="required">*</span></label>
-                        <select id="equipe_id" name="equipe_id" required>
-                            <option value="">-- Sélectionner une équipe --</option>
+                        <input type="number" id="equipe_id" name="equipe_id" required>
+                            <!-- <option value="">-- Sélectionner une équipe --</option>
                             <option value="1">Paris Saint-Germain</option>
                             <option value="2">Real Madrid</option>
                             <option value="3">FC Barcelona</option>
@@ -333,7 +337,7 @@
                             <option value="13">Al-Hilal</option>
                             <option value="14">Galatasaray</option>
                             <option value="15">Fenerbahçe</option>
-                        </select>
+                        </select> -->
                     </div>
                 </div>
 

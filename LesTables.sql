@@ -17,6 +17,9 @@ CREATE TABLE joueur(
      Equipe_id int,
      FOREIGN KEY (Equipe_id) REFERENCES equipe(id)
    );
+--    ALTER TABLE joueur
+-- RENAME COLUMN Nationalité TO Nationalite;
+
   --  alter table joueur add index email_index (Email)
   -- alter table joueur add index email_index (Email)
   -- alter table equipe add index name_index (Name)
@@ -25,12 +28,14 @@ CREATE TABLE Coach(
     id INT  PRIMARY KEY AUTO_INCREMENT,
     Name varchar(300) NOT null ,
     Email varchar(300) NOT null UNIQUE,
-    Nationalité varchar(300) NOT null ,
+    Nationalite varchar(300) NOT null ,
     style_coach varchar(300),
     annee_experience int,
     Equipe_id int,
     FOREIGN KEY (Equipe_id) REFERENCES equipe(id)
    );
+--    ALTER TABLE coach RENAME COLUMN Nationalité TO Nationalite;
+
    
 CREATE TABLE Contrat(
     id INT  PRIMARY KEY AUTO_INCREMENT,

@@ -2,6 +2,8 @@
 <?php
 include_once "DataBase.php";
 include_once "Equipe.php";
+include_once "Joueur.php";
+include_once "Coach.php";
 
    $NewEquipe = new Equipe();
    $equipes = $NewEquipe->Affichage("equipe",$conn); 
@@ -9,8 +11,10 @@ include_once "Equipe.php";
 
     $NewJoueur = new Joueur();
    $joueurs = $NewJoueur->Affichage("joueur",$conn); 
+    // header("Location: dashbordAdmin.php?valide=1");
 
-
+  $NewCoach = new Coach();
+   $Coachs = $NewCoach->Affichage("coach",$conn); 
 
 ?>
 
@@ -409,36 +413,36 @@ include_once "Equipe.php";
                     <tr>
                         <th>ID</th>
                         <th>Nom</th>
-                        <th>Rôle</th>
-                        <th>Équipe</th>
-                        <th>Statut</th>
+                        <th>Email</th>
+                        <th>Nationalité</th>
+                        <th>Role</th>
+                        <th>Equipe_id</th>
+                        <th>valeur_marcher</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php  foreach($joueurs as $joueur){ ?>
                     <tr>
-                        <td><?= $joueur['name'] ?></td>
-                        <td><?= $joueur['email'] ?></td>
-                        <td><?= $joueur['nationalite'] ?></td>
-                        <td><?= $joueur['name'] ?></td>
-                        <td><span class="badge active">Actif</span></td>
+                        <td><?= $joueur['id'] ?></td>
+                        <td><?= $joueur['Name'] ?></td>
+                        <td><?= $joueur['Email'] ?></td>
+                        <td><?= $joueur['Nationalite'] ?></td>
+                        <td><?= $joueur['Role'] ?></td>
+                        <td><?= $joueur['Equipe_id'] ?></td>
+                        <td><?= $joueur['Valeur_Marcher'] ?></td>
                         <td>
-                            <button class="action-btn edit">✏️ Modifier</button>
-                            <button class="action-btn delete">🗑️ Supprimer</button>
+                            <!-- les action -->
+                            <button class="action-btn edit">
+                            <a href="EditJoueur.php?id=<?= $joueur["id"]?>"> Modifier</a>
+                            </button>
+                            <button class="action-btn delete">
+                                <a href="DeleteJueur.php?id=<?= $joueur["id"]?>"> Supprimer</a>
+                            </button>
                         </td>
+                     
                     </tr>
-                    <!-- <tr>
-                        <td>#003</td>
-                        <td>Hakim Ziyech</td>
-                        <td>Milieu</td>
-                        <td>Galatasaray</td>
-                        <td><span class="badge active">Actif</span></td>
-                        <td>
-                            <button class="action-btn edit">✏️ Modifier</button>
-                            <button class="action-btn delete">🗑️ Supprimer</button>
-                        </td>
-                    </tr> -->
+              
                     <?php  }?>
 
                 </tbody>
@@ -463,18 +467,29 @@ include_once "Equipe.php";
                     </tr>
                 </thead>
                 <tbody>
+                    <?php  foreach($Coachs as $Coach){ ?>
                     <tr>
-                        <td>#C01</td>
-                        <td>Walid Regragui</td>
-                        <td>Offensif</td>
-                        <td>8 ans</td>
-                        <td>Maroc</td>
+                        <td><?= $Coach['id'] ?></td>
+                        <td><?= $Coach['Name'] ?></td>
+                        <td><?= $Coach['Email'] ?></td>
+                        <td><?= $Coach['Nationalite'] ?></td>
+                        <td><?= $Coach['style_coach'] ?></td>
+                        <td><?= $Coach['Equipe_id'] ?></td>
+                        <td><?= $Coach['annee_experience'] ?></td>
                         <td>
-                            <button class="action-btn edit">✏️ Modifier</button>
-                            <button class="action-btn delete">🗑️ Supprimer</button>
+                            <!-- les action -->
+                            <button class="action-btn edit">
+                            <a href="EditCoach.php?id=<?= $Coach["id"]?>"> Modifier</a>
+                            </button>
+                            <button class="action-btn delete">
+                                <a href="deleteCoach.php?id=<?= $Coach["id"]?>"> Supprimer</a>
+                            </button>
                         </td>
+                     
                     </tr>
-                
+              
+                    <?php  }?>
+
                 </tbody>
             </table>
         </div>

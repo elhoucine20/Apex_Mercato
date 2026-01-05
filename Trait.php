@@ -1,5 +1,5 @@
 <?php
-include "DataBase.php";
+// include "DataBase.php";
  
 trait Crud {
 
@@ -11,13 +11,13 @@ trait Crud {
     }
 
     public function Delete($conn,$id,$name){
-        try{
+        // try{
               $stmt =$conn->prepare("DELETE FROM $name WHERE id= :id");
              return $stmt->execute([':id' => $id]);
-        }catch(PDOException $e){
-            error_log("error ekn delete: " .$e->getMessage());
-            return false;
-        }
+        // }catch(PDOException $e){
+        //     error_log("error ekn delete: " .$e->getMessage());
+        //     return false;
+        // }
    
     }
 
