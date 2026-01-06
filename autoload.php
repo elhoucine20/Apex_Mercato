@@ -6,6 +6,7 @@ spl_autoload_register(function ($class) {
         'Apex\Joueur\Joueur'     => __DIR__ . '/Joueur.php',
         'Apex\Coach\Coach'       => __DIR__ . '/Coach.php',
         'Apex\DataBase\DataBase' => __DIR__ . '/DataBase.php',
+        'Apex\Contract\Contract' => __DIR__ . '/contract.php',
         'Apex\Crud'              => __DIR__ . '/Trait.php',
     ];
     
@@ -13,3 +14,4 @@ spl_autoload_register(function ($class) {
         require_once $map[$class];
     }
 });
+

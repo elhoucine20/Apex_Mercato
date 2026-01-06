@@ -41,15 +41,44 @@ CREATE TABLE Contrat(
     id INT  PRIMARY KEY AUTO_INCREMENT,
     Date DATETIME DEFAULT CURRENT_TIMESTAMP ,
     montant int NOT null ,
-    equipe_id int,
-    joueur_id int,
-    coach_id int,
+    equipe_id int NULL,
+    joueur_id int NULL,
+    coach_id int NULL,
     FOREIGN KEY (equipe_id) REFERENCES equipe(id),
     FOREIGN KEY (joueur_id) REFERENCES Joueur(id),
     FOREIGN KEY (coach_id)  REFERENCES Coach(id)
 );
-   
-   
+-- ALTER TABLE contrat
+-- MODIFY joueur_id INT NULL,
+-- MODIFY coach_id INT NULL;
+
+-- ////////////////////////////////////////////
+-- SHOW CREATE TABLE Contrat;
+
+-- ALTER TABLE Contrat DROP FOREIGN KEY contrat_ibfk_1;
+-- ALTER TABLE Contrat DROP FOREIGN KEY contrat_ibfk_2;
+-- ALTER TABLE Contrat DROP FOREIGN KEY contrat_ibfk_3;
+
+-- ALTER TABLE Contrat
+-- ADD CONSTRAINT fk_contrat_equipe
+-- FOREIGN KEY (equipe_id)
+-- REFERENCES equipe(id)
+-- ON DELETE CASCADE;
+
+--    ALTER TABLE Contrat
+-- ADD CONSTRAINT fk_contrat_joueur
+-- FOREIGN KEY (joueur_id)
+-- REFERENCES joueur(id)
+-- ON DELETE CASCADE;
+
+--    ALTER TABLE Contrat
+-- ADD CONSTRAINT fk_contrat_coach
+-- FOREIGN KEY (coach_id)
+-- REFERENCES coach(id)
+-- ON DELETE CASCADE;
+
+
+
 CREATE TABLE Transfert(
     id INT  PRIMARY KEY AUTO_INCREMENT,
     equipe_A int,

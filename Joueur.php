@@ -4,7 +4,7 @@ namespace Apex\Joueur;
 // include_once "DataBase.php";
 // include_once "Trait.php";
 use Apex\Crud;
-
+use Apex\Contract\Contract;
 
 class joueur {
     use Crud;
@@ -24,7 +24,7 @@ class joueur {
     }
 
    //  creation de joueur
-    public function Create($conn,$name,$email,$nationalite,$equipe_id,$role,$valeur_marcher){
+    public function Create($conn,$name,$email,$nationalite,$equipe_id,$role,$valeur_marcher,$montant_contrat){
     $stmt = $conn->prepare(
         "INSERT INTO joueur(Name, Email,Role, Nationalite, Valeur_Marcher, Equipe_id)
          VALUES (:name, :email, :role , :nationalite, :valeur_marche, :equipe_id)"
@@ -38,8 +38,20 @@ class joueur {
         ':valeur_marche'  => intval($valeur_marcher),
         ':equipe_id'  => intval($equipe_id)
     ]);
+
+
+         // recuperer id de joueur 
+    $stmt = $conn->prepare("SELECT id FROM joueur WHERE Email = :email");
+    $stmt->execute([':email' => $email]);
+    $joueur_id = $stmt->fetchColumn();
+        
+        //  creation de contrat 
+        Contract::CreateForJoueur($conn, $montant_contrat, $equipe_id, $joueur_id);
+        
+        return $joueur_id;
+
     
-    }
+  }
 
      //   method de modification joueur
 //   public function EditJoueur($conn, $newName,$newEmail,$newRole,$newNationalite,$newValeurMarche,$newEquipeId, $id){

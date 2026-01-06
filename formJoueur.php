@@ -24,16 +24,13 @@ if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['submit'])){
 
         $IdEquipe = htmlspecialchars(trim($_POST['equipe_id']));
         
-        // $IdContra=isset($_POST['id_contra']);
+        $MontanteContra=htmlspecialchars(trim($_POST['montantContract']));
 
         $NewJoueur = new Joueur();
 
-        $NewJoueur->Create($conn,$name,$email,$nationalite,$IdEquipe,$role,$valeurMarcher);
+        $NewJoueur->Create($conn,$name,$email,$nationalite,$IdEquipe,$role,$valeurMarcher,$MontanteContra);
             header("Location: dashbordAdmin.php");
-        //     exit();
-        // } else {
-        //     $error = "Erreur en l'ajoute de joueur.";
-        // }
+   
 
     } else {
         $error = "Erreur en name de joueur.";
@@ -247,8 +244,8 @@ if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['submit'])){
                         <input type="text" id="name" name="name" placeholder="Ex: Achraf Hakimi" required>
                     </div>
                      <div class="form-group">
-                        <label for="id_contra">ID Contra <span class="required">*</span></label>
-                        <input type="number" id="id_contra" name="id_contra" placeholder="id_contra" required>
+                        <label for="montantContract">Montante Du Contra <span class="required">*</span></label>
+                        <input type="number" id="montantContract" name="montantContract" placeholder="montantContract" required>
                     </div>
                 </div>
 
