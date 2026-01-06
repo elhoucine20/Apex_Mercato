@@ -1,6 +1,8 @@
 <?php
 
-include "Joueur.php";
+// include "Joueur.php";
+use Apex\Joueur\Joueur;
+
 // include "DataBase.php";
 include "dashbordAdmin.php";
 
@@ -14,7 +16,6 @@ if (isset($_GET['id'])) {
     echo "error dans delete id!!!!";
    } 
    
-
 }
 else{
     echo "id !!!!!!";

@@ -1,8 +1,13 @@
 <?php
 
-include "Coach.php";
+// include "Coach.php";
+use Apex\Coach\Coach;
+
 // include "DataBase.php";
 include "dashbordAdmin.php";
+
+
+
 
 if (isset($_GET['id'])) {
    $id = intval($_GET['id']);

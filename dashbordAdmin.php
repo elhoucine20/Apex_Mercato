@@ -1,17 +1,23 @@
 
 <?php
-include_once "DataBase.php";
-include_once "Equipe.php";
-include_once "Joueur.php";
-include_once "Coach.php";
+// include_once "DataBase.php";
+// include_once "Equipe.php";
+// include_once "Joueur.php";
+// include_once "Coach.php";
+require_once 'autoload.php';
 
+use Apex\Equipe\Equipe;
+use Apex\Joueur\Joueur;
+use Apex\Coach\Coach;
+use Apex\DataBase\DataBase;
+
+   $conn = DataBase::ConnexionDataBase();
+    
    $NewEquipe = new Equipe();
    $equipes = $NewEquipe->Affichage("equipe",$conn); 
-    // $equipes = $NewEquipe->Delete($conn,$id,"equipe");
 
     $NewJoueur = new Joueur();
    $joueurs = $NewJoueur->Affichage("joueur",$conn); 
-    // header("Location: dashbordAdmin.php?valide=1");
 
   $NewCoach = new Coach();
    $Coachs = $NewCoach->Affichage("coach",$conn); 

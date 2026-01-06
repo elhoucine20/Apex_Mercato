@@ -1,8 +1,10 @@
-
 <?php
-include_once "DataBase.php";
-// include "AddEquipe.php";
-include_once "Trait.php";
+namespace Apex\Equipe;
+
+// include_once "DataBase.php";
+// include_once "Trait.php";
+use Apex\DataBase;
+use Apex\Crud;
 
 class Equipe {
     use Crud;

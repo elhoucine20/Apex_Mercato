@@ -1,11 +1,11 @@
-
 <?php
-include_once "Personne.php";
-include_once "Trait.php";
+namespace Apex\Coach;
+// include_once "Personne.php";
+// include_once "Trait.php";
 
-// echo "helloooo journalist";
+use Apex\Crud;
 
-class Coach extends Personne {
+class Coach {
 
     use Crud;
     

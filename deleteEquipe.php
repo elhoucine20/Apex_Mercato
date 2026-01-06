@@ -1,6 +1,8 @@
 <?php
 
-include "Equipe.php";
+// include "Equipe.php";
+use Apex\Equipe\Equipe;
+
 // include "DataBase.php";
 include "dashbordAdmin.php";
 

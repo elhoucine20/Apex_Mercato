@@ -1,6 +1,13 @@
 <?php
-include_once "DataBase.php"; 
-include_once "Equipe.php";
+// include_once "DataBase.php"; 
+// include_once "Equipe.php";
+
+require_once 'autoload.php';
+
+use Apex\Equipe\Equipe;
+use Apex\DataBase\DataBase;
+$conn = DataBase::ConnexionDataBase();
+
 
 if (!isset($_GET['id'])) {
     header("Location: dashbordAdmin.php");

@@ -1,6 +1,11 @@
 <?php
-include_once "DataBase.php";
-include_once "Coach.php";
+// include_once "DataBase.php";
+// include_once "Coach.php";
+require_once 'autoload.php';
+use Apex\Coach\Coach;
+use Apex\DataBase\DataBase;
+$conn = DataBase::ConnexionDataBase();
+
 
 if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['submit'])){
 

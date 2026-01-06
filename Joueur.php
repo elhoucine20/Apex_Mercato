@@ -1,12 +1,12 @@
-
 <?php
-include_once "Personne.php";
-// include "contract.php";
-include_once "DataBase.php";
-include_once "Trait.php";
+namespace Apex\Joueur;
+// include_once "Personne.php";
+// include_once "DataBase.php";
+// include_once "Trait.php";
+use Apex\Crud;
 
 
-class joueur extends Personne{
+class joueur {
     use Crud;
 
     private static $Prime_Signature = 1500;

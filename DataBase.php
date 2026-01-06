@@ -1,24 +1,36 @@
 <?php
+namespace Apex\DataBase;
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$conn = null;
+use PDO;  //  
+use PDOException;  //  
 
-try {
-    $conn = new PDO(
-        "mysql:host=$servername;dbname=mercato;charset=utf8mb4", 
-        $username, 
-        $password
-    );
-    
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    
+class DataBase {
+    public static string $servername = "localhost";
+    public static string $username   = "root";
+    public static string $dbName     = "mercato";
+    public static string $password   = "";
+    public static ?PDO $pdo = null;
 
-    
-} catch(PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
-}
+    public static function ConnexionDataBase() {
+        if (!self::$pdo) {
+            try {
+                self::$pdo = new PDO(
+                    "mysql:host=" . self::$servername . ";dbname=" . self::$dbName . ";charset=utf8mb4",
+                    self::$username,
+                    self::$password
+                );
+
+                self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+            } catch (PDOException $e) {
+                die("Connection failed: " . $e->getMessage());
+            }
+        }
+        return self::$pdo;
+    }
+   }
+
+   $conn = DataBase::ConnexionDataBase();
 
 ?>

@@ -1,6 +1,7 @@
 <?php
+namespace Apex;
 // include "DataBase.php";
- 
+ use PDO;
 trait Crud {
 
     public function Affichage($Name, $conn) {

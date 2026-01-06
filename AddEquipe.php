@@ -1,7 +1,9 @@
 <?php
-include "DataBase.php";
-include_once "Equipe.php";
+// include "DataBase.php";
+// include_once "Equipe.php";
 
+use Apex\DataBase\DataBase;
+use Apex\Equipe\Equipe;
 
 if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['submit'])){
 

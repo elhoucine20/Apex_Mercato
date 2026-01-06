@@ -1,6 +1,12 @@
 <?php
-include "Equipe.php";
-include "DataBase.php";
+// include "Equipe.php";
+// include "DataBase.php";
+require_once 'autoload.php';
+
+use Apex\Equipe\Equipe;
+use Apex\DataBase\DataBase;
+$conn = DataBase::ConnexionDataBase();
+
 
 $equipe = new Equipe();
 $idEquipe = $_GET['id']; 

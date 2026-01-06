@@ -4,17 +4,17 @@
 final class FinancialEngine {
 
     private  $commision ; 
-    private  $solvabilité ;
-    private static  $TransferTaxe = 5/100;
+    private  $solvabilite ;
+    private static  $Taxe = 5/100;   // 5% dariba
     private  $total ;
 
 
-    public function  CheckSolvabilité($budget,$transfertMontant){
+    public function  CheckSolvabilite($budget,$prixTransfer){
 
-         $this -> commision = $transfertMontant / 2 ;
-        $this -> total = (($transfertMontant + $this->commision) * (self::$transfertTaxe));
-        $this -> Solvabilite = $budget - ($this->total);
-        if($this -> Solvabilite > 0){
+         $this -> commision = $prixTransfer / 2 ;   // commissin le server
+        $this -> total = (($prixTransfer + $this->commision) * (self::$Taxe));   // total de transfer sur l'equipe
+        $this -> solvabilite = $budget - ($this->total);   // if impossible le transfert ou non 
+        if($this -> solvabilite > 0){
             return $this->total ;
         }
         else {
@@ -23,4 +23,4 @@ final class FinancialEngine {
     }
 }
 
-$finalClass = new FinancialEngine();
+$financialEngine = new FinancialEngine();

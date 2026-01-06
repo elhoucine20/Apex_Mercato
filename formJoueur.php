@@ -1,6 +1,11 @@
 <?php
-include_once "DataBase.php";
-include_once "Joueur.php";
+// include_once "DataBase.php";
+// include_once "Joueur.php";
+require_once 'autoload.php';
+
+use Apex\DataBase\DataBase;
+use Apex\Joueur\Joueur;
+$conn = DataBase::ConnexionDataBase();
 
 
 if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['submit'])){
