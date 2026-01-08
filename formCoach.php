@@ -23,16 +23,13 @@ if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['submit'])){
 
         $IdEquipe = htmlspecialchars(trim($_POST['equipe_id']));
         
-        // $IdContra=isset($_POST['id_contra']);
+        $MontanteContra=htmlspecialchars(trim($_POST['montante_contra']));
 
         $NewCoach = new Coach();
 
-        $NewCoach->Create($conn,$name,$email,$nationalite,$IdEquipe,$style_coach,$annee_experience);
+        $NewCoach->Create($conn,$name,$email,$nationalite,$IdEquipe,$style_coach,$annee_experience,$MontanteContra);
             header("Location: dashbordAdmin.php");
-        //     exit();
-        // } else {
-        //     $error = "Erreur en l'ajoute de coach.";
-        // }
+     
 
     } else {
         $error = "Erreur en name de coach.";
@@ -250,14 +247,15 @@ if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['submit'])){
 
             <form action="" method="POST">
                 <div class="form-row">
-                    <div class="form-group">
-                        <label for="id">ID <span class="required">*</span></label>
-                        <input type="number" id="id" name="id" placeholder="Ex: 1" required>
-                    </div>
 
                     <div class="form-group">
                         <label for="name">Nom complet <span class="required">*</span></label>
                         <input type="text" id="name" name="name" placeholder="Ex: Walid Regragui" required>
+                    </div>
+
+                     <div class="form-group">
+                        <label for="montante_contra">Montante Contract <span class="required">*</span></label>
+                        <input type="number" id="montante_contra" name="montante_contra" placeholder="Ex: 100" required>
                     </div>
                 </div>
 

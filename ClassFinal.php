@@ -1,21 +1,21 @@
 <?php
+namespace Apex\ClassFinal;
+
+final class ClassFinal {
+
+    private static $commision ; 
+    private static $solvabilite ;
+    private static $Taxe = 5/100;   // 5% dariba
+    private static $total ;
 
 
-final class FinancialEngine {
+    public static function  CheckSolvabilite($budget,$prixTransfer){
 
-    private  $commision ; 
-    private  $solvabilite ;
-    private static  $Taxe = 5/100;   // 5% dariba
-    private  $total ;
-
-
-    public function  CheckSolvabilite($budget,$prixTransfer){
-
-         $this -> commision = $prixTransfer / 2 ;   // commissin le server
-        $this -> total = (($prixTransfer + $this->commision) * (self::$Taxe));   // total de transfer sur l'equipe
-        $this -> solvabilite = $budget - ($this->total);   // if impossible le transfert ou non 
-        if($this -> solvabilite > 0){
-            return $this->total ;
+        self:: $commision = $prixTransfer / 2 ;   // commissin le server
+       $Budget= self:: $total = (($prixTransfer + self::$commision) * (self::$Taxe));   // total de transfer sur l'equipe
+        self:: $solvabilite = $budget - (self::$total);   // if possible le transfert ou non 
+        if(self::$solvabilite > 0){
+            return $Budget;
         }
         else {
             return false ;
@@ -23,7 +23,7 @@ final class FinancialEngine {
     }
 }
 
-$financialEngine = new FinancialEngine();
+// $financialEngine = new FinancialEngine();
 
 
 

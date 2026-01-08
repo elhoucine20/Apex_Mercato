@@ -349,9 +349,9 @@ use Apex\DataBase\DataBase;
             <li><a href="#joueurs">⚽ <span>Joueurs</span></a></li>
             <li><a href="#coachs">👔 <span>Coachs</span></a></li>
             <li><a href="#equipes">🏆 <span>Équipes</span></a></li>
-            <li><a href="#">📰 <span>Articles</span></a></li>
-            <li><a href="#">👥 <span>Utilisateurs</span></a></li>
-            <li><a href="#">⚙️ <span>Paramètres</span></a></li>
+            <!-- <li><a href="#">📰 <span>Articles</span></a></li> -->
+            <li><a href="transferplayer.php">👥 <span>Transfert joueur</span></a></li>
+            <li><a href="transferCoach.php">⚙️ <span>transfert coach</span></a></li>
         </ul>
 
         <div class="logout">
@@ -466,6 +466,8 @@ use Apex\DataBase\DataBase;
                     <tr>
                         <th>ID</th>
                         <th>Nom</th>
+                        <th>Email</th>
+                        <th>Nationalité</th>
                         <th>Style</th>
                         <th>Expérience</th>
                         <th>Équipe</th>

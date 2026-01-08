@@ -1,4 +1,33 @@
 <?php 
+require_once 'autoload.php';
+
+use Apex\Transfert\Transfert;
+use Apex\DataBase\DataBase;
+$conn = DataBase::ConnexionDataBase();
+
+
+
+if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['submit'])){
+
+    if(!empty($_POST['id_joueur'])){
+        $joueur_id=htmlspecialchars(trim($_POST['id_joueur']));
+    }
+       if(!empty($_POST['id_equipe_A'])){
+        $id_equipe_A=htmlspecialchars(trim($_POST['id_equipe_A']));
+    }
+       if(!empty($_POST['id_equipe_B'])){
+        $id_equipe_B=htmlspecialchars(trim($_POST['id_equipe_B']));
+    }
+    if($id_equipe_A==$id_equipe_B){
+        exit();
+    }
+$Transfert=new Transfert ();
+$Transfert->TransfertJoueur($conn,$joueur_id,$id_equipe_A,$id_equipe_B);
+header("location:dashbordAdmin.php");
+
+
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -132,7 +161,7 @@
 <body>
     <div class="container">
         <h1>⚽ Transfert de Joueur</h1>
-        <form id="transferForm">
+        <form action="" method="POST" id="transferForm">
             <div class="form-group">
                 <label for="id_joueur">ID Joueur</label>
                 <input type="number" id="id_joueur" name="id_joueur" required placeholder="Entrez l'ID du joueur">
@@ -149,7 +178,7 @@
             </div>
 
             <div class="button-group">
-                <button type="submit" class="submit-btn">
+                <button type="submit" name="submit" class="submit-btn">
                     <span class="icon">✓</span> Add Transfert
                 </button>
                 <button type="reset" class="reset-btn">

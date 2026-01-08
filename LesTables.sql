@@ -12,7 +12,7 @@ CREATE TABLE joueur(
      Name varchar(300) NOT null,
      Role varchar(300) NOT null,
      Email varchar(300) NOT null UNIQUE,
-     Nationalité varchar(300),
+     Nationalite varchar(300),
      Valeur_Marcher int ,
      Equipe_id int,
      FOREIGN KEY (Equipe_id) REFERENCES equipe(id)
@@ -48,6 +48,9 @@ CREATE TABLE Contrat(
     FOREIGN KEY (joueur_id) REFERENCES Joueur(id),
     FOREIGN KEY (coach_id)  REFERENCES Coach(id)
 );
+--( ALTER TABLE contrat
+-- ADD date_fin DATE DEFAULT NULL;)
+
 -- ALTER TABLE contrat
 -- MODIFY joueur_id INT NULL,
 -- MODIFY coach_id INT NULL;

@@ -5,6 +5,9 @@ namespace Apex\Joueur;
 // include_once "Trait.php";
 use Apex\Crud;
 use Apex\Contract\Contract;
+use Apex\DataBase\DataBase;
+$conn = DataBase::ConnexionDataBase();
+// use PDO;
 
 class joueur {
     use Crud;
@@ -48,38 +51,62 @@ class joueur {
         //  creation de contrat 
         Contract::CreateForJoueur($conn, $montant_contrat, $equipe_id, $joueur_id);
         
-        return $joueur_id;
+        // return $joueur_id;
 
     
   }
 
-     //   method de modification joueur
-//   public function EditJoueur($conn, $newName,$newEmail,$newRole,$newNationalite,$newValeurMarche,$newEquipeId, $id){
-//          $stmt = $conn->prepare(
-//              "UPDATE joueur SET 
-//              Name = :name,
-//              Email = :email,
-//              Role = :role ,
-//              Nationalité = :nationalite ,
-//              Valeur_Marcher = :valeur_marche ,
-//              Equipe_id = :equipe_id 
-//              WHERE id = :id"
-//          );
-     
-//          return $stmt->execute([
-//              ':name' => $newName,
-//              ':manager' => $newEmail,
-//              ':budget' => $newRole,
-//              ':budget' => $newNationalite,
-//              ':budget' => $newValeurMarche,
-//              ':budget' => $newEquipeId,
-//              ':id'     => $id
-//          ]);
+//   method de modification joueur
+          //   public function EditJoueur($conn, $newName,$newEmail,$newRole,$newNationalite,$newValeurMarche,$newEquipeId, $id){
+          //          $stmt = $conn->prepare(
+          //              "UPDATE joueur SET 
+          //              Name = :name,
+          //              Email = :email,
+          //              Role = :role ,
+          //              Nationalité = :nationalite ,
+          //              Valeur_Marcher = :valeur_marche ,
+          //              Equipe_id = :equipe_id 
+          //              WHERE id = :id"
+          //          );
+               
+          //          return $stmt->execute([
+          //              ':name' => $newName,
+          //              ':manager' => $newEmail,
+          //              ':budget' => $newRole,
+          //              ':budget' => $newNationalite,
+          //              ':budget' => $newValeurMarche,
+          //              ':budget' => $newEquipeId,
+          //              ':id'     => $id
+          //          ]);
 //   }
 
+// checking if joueur disponible 
+public static function CheckJoueur($conn,$id,$equipe_A){
+    $stmt = $conn->prepare("SELECT id FROM joueur WHERE id=:id AND Equipe_id=:equipe_id");
+    $stmt->execute([':id'=>$id,':equipe_id'=>$equipe_A]);
+    $IdJoueur = $stmt->fetchColumn();
+    if($IdJoueur){
+      return $IdJoueur;
+    }
+    else{
+      return false ;
+    }
+}
 
-  
+// valeur marcher de joueur 
+        public static function ValeurMarcher($conn,$joueur_id):float{
+                           $stmt=$conn->prepare("SELECT Valeur_Marcher FROM joueur WHERE id=:id ");
+                           $stmt->execute([':id'=>$joueur_id]);
+                           $Valedur_Marcher = $stmt->fetchColumn();
+                           return $Valedur_Marcher;
+                        }
 
+
+                              // modifie equipe de joueur 
+            public static function NewEquipeJOueur($conn,$equipe_B,$joueur_id){
+                $stmt=$conn->prepare("UPDATE joueur SET Equipe_id=:equipe_id WHERE id=:id");
+                $stmt->execute([':equipe_id'=>$equipe_B,':id'=>$joueur_id]);
+            } 
 }
 
 

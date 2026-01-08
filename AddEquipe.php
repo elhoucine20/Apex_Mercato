@@ -1,25 +1,32 @@
 <?php
+require_once 'autoload.php';
+use Apex\Equipe\Equipe;
+use Apex\DataBase\DataBase;
+   $conn = DataBase::ConnexionDataBase();
+
 // include "DataBase.php";
 // include_once "Equipe.php";
 
-use Apex\DataBase\DataBase;
-use Apex\Equipe\Equipe;
+
 
 if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['submit'])){
-
     if(!empty($_POST['name'])){
+        var_dump($_POST['submit']);
 
         $nom = htmlspecialchars(trim($_POST['name']));
         $manager = htmlspecialchars(trim($_POST['manager']));
         $budget = isset($_POST['budget']) ? $_POST['budget'] : 0;
 
-        $NewEquipe = new Equipe();
-        $NewEquipe->SetName($nom);
-        $NewEquipe->SetManager($manager);
-        $NewEquipe->SetBudget($budget);
-        if($NewEquipe->Create($conn)){
-            header("Location: dashbordAdmin.php?valide=1");
-            exit();
+        // $NewEquipe =Equipe();
+        // $NewEquipe->SetName();
+        // $NewEquipe->SetManager();
+        // $NewEquipe->SetBudget();
+        $NewEquipe=Equipe::Create($conn,$nom,$manager,$budget);
+        if($NewEquipe){
+            // header("Location: dashbordAdmin.php");
+            header("Location: dashbordAdmin.php");
+
+
         } else {
             $error = "Erreur en l'ajoute de l'equipe.";
         }
@@ -203,17 +210,17 @@ if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['submit'])){
 
             <div class="form-group">
                 <label>Nom de l’équipe <span class="required">*</span></label>
-                <input type="text" name="<?= $nom?>" placeholder="Ex: Raja Club Athletic" required>
+                <input type="text"  name="name" placeholder="Ex: Raja Club Athletic" required>
             </div>
 
             <div class="form-group">
                 <label>Manager</label>
-                <input type="text"  name="<?= $manager?>" placeholder="Ex: Aziz El Badraoui">
+                <input type="text" name="manager"  placeholder="Ex: Aziz El Badraoui">
             </div>
 
             <div class="form-group">
                 <label>Budget (€)</label>
-                <input type="number" name="<?= $budget?>" min="0" placeholder="Ex: 5000000">
+                <input type="number" name="budget" min="0" placeholder="Ex: 5000000">
             </div>
 
             <div class="btn-group">

@@ -4,6 +4,7 @@ namespace Apex\Coach;
 // include_once "Trait.php";
 
 use Apex\Crud;
+use Apex\Contract\Contract;
 
 class Coach {
 
@@ -25,7 +26,7 @@ class Coach {
     }
 
  //  creation de coach
-    public function Create($conn,$name,$email,$nationalite,$equipe_id,$style_coach,$annee_experience){
+    public function Create($conn,$name,$email,$nationalite,$equipe_id,$style_coach,$annee_experience,$montant_contrat){
     $stmt = $conn->prepare(
         "INSERT INTO coach(Name, Email, Nationalite, style_coach,annee_experience, Equipe_id)
          VALUES (:name, :email,  :nationalite,:style_coach , :annee_experience, :equipe_id)"
@@ -39,6 +40,18 @@ class Coach {
         ':annee_experience'  => intval($annee_experience),
         ':equipe_id'  => intval($equipe_id)
     ]);
+
+        // recuperer id de coach 
+    $stmt = $conn->prepare("SELECT id FROM coach WHERE Email = :email");
+    $stmt->execute([':email' => $email]);
+    $coach_id = $stmt->fetchColumn();
+        
+        //  creation de contrat 
+        Contract::CreateForCoach($conn, $montant_contrat, $equipe_id, $coach_id);
+        
+        return $coach_id;
+
+
     }
     
 
