@@ -12,28 +12,28 @@ use Apex\Crud;
 class Equipe {
     use Crud;
 
-//   private  $name;
-//   private  $manager;
-//   private  $budget;
- 
-//  public function SetName($nom){
-//    $this->name=$nom;
-//     }
-//     public function SetManager($manager){
-//        $this->manager=$manager;
-//     }
-//     public function SetBudget($budget){
-//        $this->budget=$budget;
-//     }
-//     public function GetName(){
-//        return $this->name;
-//     }
-//     public function GetManager(){
-//        return $this->manager;
-//     }
-//     public function GetBudget(){
-//        return $this->budget;
-//     }
+    //   private  $name;
+    //   private  $manager;
+    //   private  $budget;
+     
+    //  public function SetName($nom){
+    //    $this->name=$nom;
+    //     }
+    //     public function SetManager($manager){
+    //        $this->manager=$manager;
+    //     }
+    //     public function SetBudget($budget){
+    //        $this->budget=$budget;
+    //     }
+    //     public function GetName(){
+    //        return $this->name;
+    //     }
+    //     public function GetManager(){
+    //        return $this->manager;
+    //     }
+    //     public function GetBudget(){
+    //        return $this->budget;
+    //     }
 
    //  creation de l'equipe
     public static function Create($conn,$name, $manager,$budget){
@@ -49,7 +49,7 @@ class Equipe {
     ]);
     }
 
-//  modiification du budget 
+  //  modiification du budget 
     public function EditBudget($conn, $newBudget, $equipeId){
          $stmt = $conn->prepare(
              "UPDATE equipe SET Budget = :budget WHERE id = :id"
@@ -114,7 +114,5 @@ class Equipe {
         $stmt2->execute([':budget'=>intval($AddBudget),':id1'=>intval($id2)]);
 
     }
-
-
 }
 

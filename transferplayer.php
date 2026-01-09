@@ -12,6 +12,7 @@ if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['submit'])){
     if(!empty($_POST['id_joueur'])){
         $joueur_id=htmlspecialchars(trim($_POST['id_joueur']));
     }
+    
        if(!empty($_POST['id_equipe_A'])){
         $id_equipe_A=htmlspecialchars(trim($_POST['id_equipe_A']));
     }

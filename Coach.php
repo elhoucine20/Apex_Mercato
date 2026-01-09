@@ -79,6 +79,32 @@ class Coach {
   // }
 
 
+// checking if coach disponible 
+public static function CheckCoach($conn,$id,$equipe_A){
+    $stmt = $conn->prepare("SELECT id FROM coach WHERE id=:id AND Equipe_id=:equipe_id");
+    $stmt->execute([':id'=>$id,':equipe_id'=>$equipe_A]);
+    $IdCoach = $stmt->fetchColumn();
+    if($IdCoach){
+      return $IdCoach;
+    }
+    else{
+      return false ;
+    }
+}
+// salaire de coach
+ public static function SalaireCoach($conn,$coach_id):float{
+           $stmt=$conn->prepare("SELECT montant FROM contrat WHERE coach_id=:id ");
+           $stmt->execute([':id'=>$coach_id]);
+           $Salaire_Coach = $stmt->fetchColumn();
+          
+           return $Salaire_Coach;
+        }
+
+                                  // modifie equipe de Coach
+            public static function NewEquipeCoach($conn,$equipe_B,$coach_id){
+                $stmt=$conn->prepare("UPDATE coach SET Equipe_id=:equipe_id WHERE id=:id");
+                $stmt->execute([':equipe_id'=>$equipe_B,':id'=>$coach_id]);
+            } 
 
 }
 

@@ -11,16 +11,23 @@ use Apex\Joueur\Joueur;
 use Apex\Coach\Coach;
 use Apex\DataBase\DataBase;
 
-   $conn = DataBase::ConnexionDataBase();
-    
-   $NewEquipe = new Equipe();
-   $equipes = $NewEquipe->Affichage("equipe",$conn); 
+$conn = DataBase::ConnexionDataBase();
 
-    $NewJoueur = new Joueur();
-   $joueurs = $NewJoueur->Affichage("joueur",$conn); 
 
-  $NewCoach = new Coach();
-   $Coachs = $NewCoach->Affichage("coach",$conn); 
+$NewEquipe = new Equipe();
+$equipes = $NewEquipe->Affichage("equipe",$conn); 
+
+$NewJoueur = new Joueur();
+$joueurs = $NewJoueur->Affichage("joueur",$conn); 
+
+$NewCoach = new Coach();
+$Coachs = $NewCoach->Affichage("coach",$conn); 
+
+
+// use Apex\Contract\Contract;
+// $lesContrats = Contract::AffichageDesContract($conn);
+
+
 
 ?>
 
@@ -349,9 +356,11 @@ use Apex\DataBase\DataBase;
             <li><a href="#joueurs">⚽ <span>Joueurs</span></a></li>
             <li><a href="#coachs">👔 <span>Coachs</span></a></li>
             <li><a href="#equipes">🏆 <span>Équipes</span></a></li>
+            <li><a href="les_contrats.php">📄 <span>List des contrats</span></a></li>
+            <li><a href="les_transfets.php">📄 <span>List des transfert</span></a></li>
             <!-- <li><a href="#">📰 <span>Articles</span></a></li> -->
-            <li><a href="transferplayer.php">👥 <span>Transfert joueur</span></a></li>
-            <li><a href="transferCoach.php">⚙️ <span>transfert coach</span></a></li>
+            <li><a href="transferplayer.php">🏃‍♂️‍➡️<span>Transfert joueur</span></a></li>
+            <li><a href="transferCoach.php">🙎‍♂️<span>transfert coach</span></a></li>
         </ul>
 
         <div class="logout">
@@ -482,8 +491,8 @@ use Apex\DataBase\DataBase;
                         <td><?= $Coach['Email'] ?></td>
                         <td><?= $Coach['Nationalite'] ?></td>
                         <td><?= $Coach['style_coach'] ?></td>
-                        <td><?= $Coach['Equipe_id'] ?></td>
                         <td><?= $Coach['annee_experience'] ?></td>
+                        <td><?= $Coach['Equipe_id'] ?></td>
                         <td>
                             <!-- les action -->
                             <button class="action-btn edit">
@@ -542,6 +551,7 @@ use Apex\DataBase\DataBase;
                 </tbody>
             </table>
         </div>
+       
     </main>
 </body>
 </html>

@@ -93,7 +93,7 @@ public static function CheckJoueur($conn,$id,$equipe_A){
     }
 }
 
-// valeur marcher de joueur 
+        // valeur marcher de joueur 
         public static function ValeurMarcher($conn,$joueur_id):float{
                            $stmt=$conn->prepare("SELECT Valeur_Marcher FROM joueur WHERE id=:id ");
                            $stmt->execute([':id'=>$joueur_id]);

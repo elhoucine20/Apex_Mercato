@@ -22,7 +22,7 @@ trait Crud {
    
     }
 
- 
+
 
 }
 

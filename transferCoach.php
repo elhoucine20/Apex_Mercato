@@ -1,4 +1,33 @@
 <?php 
+require_once 'autoload.php';
+
+use Apex\Transfert\Transfert;
+use Apex\DataBase\DataBase;
+$conn = DataBase::ConnexionDataBase();
+
+
+
+if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['submit'])){
+
+    if(!empty($_POST['id_coach'])){
+        $coach_id=htmlspecialchars(trim($_POST['id_coach']));
+    }
+    
+       if(!empty($_POST['id_equipe_A'])){
+        $id_equipe_A=htmlspecialchars(trim($_POST['id_equipe_A']));
+    }
+       if(!empty($_POST['id_equipe_B'])){
+        $id_equipe_B=htmlspecialchars(trim($_POST['id_equipe_B']));
+    }
+    if($id_equipe_A==$id_equipe_B){
+        exit();
+    }
+$Transfert=new Transfert ();
+$Transfert->TransfertCoach($conn,$coach_id,$id_equipe_A,$id_equipe_B);
+header("location:dashbordAdmin.php");
+
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -132,7 +161,7 @@
 <body>
     <div class="container">
         <h1>👔 Transfert de Coach</h1>
-        <form id="coachTransferForm">
+        <form method="POST" action="" id="coachTransferForm">
             <div class="form-group">
                 <label for="id_coach">ID Coach</label>
                 <input type="number" id="id_coach" name="id_coach" required placeholder="Entrez l'ID du coach">
@@ -149,7 +178,7 @@
             </div>
 
             <div class="button-group">
-                <button type="submit" class="submit-btn">
+                <button type="submit" name="submit" class="submit-btn">
                     <span class="icon">✓</span> Add Transfert
                 </button>
                 <button type="reset" class="reset-btn">
@@ -158,7 +187,7 @@
             </div>
         </form>
     </div>
-
+                <!-- 00 57 44 99 35 51 04 79 45 00 -->
     <!-- <script>
         document.getElementById('coachTransferForm').addEventListener('submit', function(e) {
             e.preventDefault();
