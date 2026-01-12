@@ -4,7 +4,13 @@
 // include_once "Equipe.php";
 // include_once "Joueur.php";
 // include_once "Coach.php";
+session_start();
+if (!$_SESSION['role'] == "admin") {
+    header("location:logout.php");
+}
+
 require_once 'autoload.php';
+
 
 use Apex\Equipe\Equipe;
 use Apex\Joueur\Joueur;
@@ -361,10 +367,11 @@ $Coachs = $NewCoach->Affichage("coach",$conn);
             <!-- <li><a href="#">📰 <span>Articles</span></a></li> -->
             <li><a href="transferplayer.php">🏃‍♂️‍➡️<span>Transfert joueur</span></a></li>
             <li><a href="transferCoach.php">🙎‍♂️<span>transfert coach</span></a></li>
+            <!-- <li><a href="logout.php">🚫<span>log out</span></a></li> -->
         </ul>
 
         <div class="logout">
-            <a href="#">🚪 <span>Déconnexion</span></a>
+            <a href="logout.php">🚪 <span>Déconnexion</span></a>
         </div>
     </aside>
 

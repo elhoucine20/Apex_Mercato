@@ -24,7 +24,7 @@ class DataBase {
                 self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
             } catch (PDOException $e) {
-                die("Connection failed: " . $e->getMessage());
+                die("Connection errour: " . $e->getMessage());
             }
         }
         return self::$pdo;

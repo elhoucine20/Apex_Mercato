@@ -1,3 +1,17 @@
+<?php
+session_start();
+if (!$_SESSION['role'] == "journaliste") {
+    header("location:logout.php");
+}
+
+
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -312,7 +326,7 @@
 
         <div class="user-section">
             <div class="avatar">J</div>
-            <a href="#" style="color: #666; text-decoration: none; font-weight: 500;">Déconnexion</a>
+            <a href="logout.php" style="color: #666; text-decoration: none; font-weight: 500;">Déconnexion</a>
         </div>
     </header>
 

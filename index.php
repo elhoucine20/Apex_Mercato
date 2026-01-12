@@ -2,10 +2,16 @@
 
 if($_SERVER['REQUEST_METHOD']=="POST"){
     if($_POST['role']=="admin"){
-       header("location: dashbordAdmin.php");
+            session_start();
+            $_SESSION['role']="admin";
+            header("location: dashbordAdmin.php");
     }
     else if($_POST['role']=="journaliste"){
-       header("location: dashbordJournalist.php");
+
+            session_start();
+            $_SESSION['role']="journaliste";
+            header("location: dashbordJournalist.php");
+
     }else{
     //    header("location: pageVisiteur.php");
     exit();

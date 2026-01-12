@@ -19,7 +19,7 @@ trait Crud {
         //     error_log("error ekn delete: " .$e->getMessage());
         //     return false;
         // }
-   
+
     }
 
 
